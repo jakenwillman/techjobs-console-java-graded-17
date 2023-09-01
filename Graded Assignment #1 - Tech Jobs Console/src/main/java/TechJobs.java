@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -77,7 +78,7 @@ public class TechJobs {
         Boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
 
-        // Put the choices in an ordered structure so we can
+        // Put the choices in an ordered structure, so we can
         // associate an integer with each one
         int i = 0;
         for (String choiceKey : choices.keySet()) {
@@ -117,9 +118,26 @@ public class TechJobs {
         return choiceKeys[choiceIdx];
     }
 
-    // Print a list of jobs
+    // Task 1: Modified and implemented printJobs() to print information about job positions stored in a list of HashMaps.
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-
-        System.out.println("printJobs is not implemented yet");
+        //check whether someJobs is empty or not. If empty, print "No Results". Otherwise, complete the loop to print list of jobs.
+        if (someJobs.isEmpty()) {
+            //used print() instead of println() to avoid adding a new empty line after "No Results" is printed, to get the expected output.
+            System.out.print("No Results");
+        } else {
+            //used a for-each loop to iterate through each job HashMap in the ArrayList.
+            for (HashMap<String, String> job : someJobs) {
+                //for each iteration of the job HashMap, it prints a header line of "*****" using a \n separator to create space between jobs and get the expected output.
+                System.out.println("\n*****");
+                //print the values for each key from the HashMap.
+                System.out.println("position type: " + job.get("position type"));
+                System.out.println("name: " + job.get("name"));
+                System.out.println("employer: " + job.get("employer"));
+                System.out.println("location: " + job.get("location"));
+                System.out.println("core competency: " + job.get("core competency"));
+                //after printing all values for jobs, print another line of "*****" for readability.
+                System.out.println("*****");
+            }
+        }
     }
 }
