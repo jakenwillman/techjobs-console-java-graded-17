@@ -25,7 +25,7 @@ public class JobData {
      * without duplicates, for a given column.
      *
      * @param field The column to retrieve values from
-     * @return List of all of the values of the given field
+     * @return List of all the values of the given field
      */
     public static ArrayList<String> findAll(String field) {
 
@@ -42,6 +42,11 @@ public class JobData {
             }
         }
 
+        /* BONUS MISSION PART 1
+        BONUS MISSION PART 2 FAILURE
+        *  Sort all the values in alphabetical order */
+        Collections.sort(values);
+
         return values;
     }
 
@@ -56,12 +61,10 @@ public class JobData {
     /**
      * Returns results of search the jobs data by key/value, using
      * inclusion of the search term.
-     *
      * For example, searching for employer "Enterprise" will include results
      * with "Enterprise Holdings, Inc".
-     *
      * @param column   Column that should be searched.
-     * @param value Value of teh field to search for
+     * @param value Value of the field to search for
      * @return List of all jobs matching the criteria
      */
     public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
@@ -70,12 +73,11 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-
+        // modified this loop to perform a case-insensitive comparison when searching for jobs.
         for (HashMap<String, String> row : allJobs) {
-
-            String aValue = row.get(column);
-
-            if (aValue.contains(value)) {
+            String columnValue = row.get(column);
+            // Set columnValue as case-insensitive and check if it contains a case-insensitive search term.
+            if (columnValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
@@ -94,8 +96,26 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
+        // create an empty ArrayList named "matchingJobs" that stores HashMaps containing information matching the users search
+        ArrayList<HashMap<String, String>> matchingJobs = new ArrayList<>();
+        // create a for loop that iterates over each job as a HashMap in the allJobs list
+        for (HashMap<String, String> job : allJobs) {
+            // iterate through each column (field)
+            for (String key : job.keySet()) {
+            // get a case-insensitive value of the current column (key) and store it in a new "columnValue" variable
+            String columnValue = job.get(key).toLowerCase();
+            // check if "columnValue" contains the search value and set it to be case-insensitive
+            if (columnValue.contains(value.toLowerCase())) {
+                // if a match for search is found, add the job to the matchingJobs list
+                matchingJobs.add(job);
+                // use break to stop checking the remaining columns for this job
+                break;
+                }
+            }
+        }
         // TODO - implement this method
-        return null;
+        // return the list of matchingJobs
+        return matchingJobs;
     }
 
     /**

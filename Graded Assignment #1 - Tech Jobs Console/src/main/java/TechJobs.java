@@ -63,6 +63,7 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
+                    //findByValue was already called here within main
                     printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
@@ -123,19 +124,21 @@ public class TechJobs {
         //check whether someJobs is empty or not. If empty, print "No Results". Otherwise, complete the loop to print list of jobs.
         if (someJobs.isEmpty()) {
             //used print() instead of println() to avoid adding a new empty line after "No Results" is printed, to get the expected output.
+            //print("No Results") if isEmpty() is true
             System.out.print("No Results");
         } else {
             //used a for-each loop to iterate through each job HashMap in the ArrayList.
             for (HashMap<String, String> job : someJobs) {
-                //for each iteration of the job HashMap, it prints a header line of "*****" using a \n separator to create space between jobs and get the expected output.
+                //for each iteration of a new job HashMap, it prints a header line of "*****" using a \n separator to create space between jobs and get the expected output.
                 System.out.println("\n*****");
-                //print the values for each key from the HashMap.
+                //print out the labels of each key using a "string" that properly represents the values from the HashMap.
+                //used getter methods to retrieve the values from the HashMap
                 System.out.println("position type: " + job.get("position type"));
                 System.out.println("name: " + job.get("name"));
                 System.out.println("employer: " + job.get("employer"));
                 System.out.println("location: " + job.get("location"));
                 System.out.println("core competency: " + job.get("core competency"));
-                //after printing all values for jobs, print another line of "*****" for readability.
+                //after printing all values for jobs, print another line of "*****" for readability and expected output.
                 System.out.println("*****");
             }
         }
