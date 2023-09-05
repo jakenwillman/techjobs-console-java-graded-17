@@ -43,7 +43,6 @@ public class JobData {
         }
 
         /* BONUS MISSION PART 1
-        BONUS MISSION PART 2 FAILURE
         *  Sort all the values in alphabetical order */
         Collections.sort(values);
 

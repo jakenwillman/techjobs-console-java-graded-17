@@ -121,10 +121,10 @@ public class TechJobs {
 
     // Task 1: Modified and implemented printJobs() to print information about job positions stored in a list of HashMaps.
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-        //check whether someJobs is empty or not. If empty, print "No Results". Otherwise, complete the loop to print list of jobs.
+        // use a conditional to check whether someJobs is empty or not. If empty, print "No Results". Otherwise, complete the loop to print the list of jobs.
         if (someJobs.isEmpty()) {
-            //used print() instead of println() to avoid adding a new empty line after "No Results" is printed, to get the expected output.
             //print("No Results") if isEmpty() is true
+            //used print() instead of println() to avoid adding a new empty line after "No Results" is printed, to get the exact expected output.
             System.out.print("No Results");
         } else {
             //used a for-each loop to iterate through each job HashMap in the ArrayList.
